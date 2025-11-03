@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.calculator-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+input {
+    width: 100%;
+    padding: 20px;
+    border: 3px solid #667eea;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+input::placeholder {
+    color: #999;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #764ba2;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2), 0 6px 20px rgba(102, 126, 234, 0.25);
+    transform: translateY(-2px);
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 10px;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+.results {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.results.hidden {
+    display: none;
+}
+
+.result-section {
+    margin-bottom: 25px;
+}
+
+.result-section:last-child {
+    margin-bottom: 0;
+}
+
+.result-section h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.result-item.total {
+    border-bottom: 2px solid #667eea;
+    padding-top: 15px;
+    margin-top: 5px;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item .label {
+    color: #666;
+    font-size: 15px;
+}
+
+.result-item .value {
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.profit-loss {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.profit-loss h2 {
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.profit {
+    color: #10b981 !important;
+    font-size: 18px !important;
+}
+
+.loss {
+    color: #ef4444 !important;
+    font-size: 18px !important;
+}
+
+.neutral {
+    color: #666 !important;
+}
+
+.operation-profit {
+    color: #10b981;
+    font-weight: 700;
+}
+
+.operation-loss {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.operation-neutral {
+    color: #666;
+    font-weight: 700;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .calculator-card {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 26px;
+    }
+    
+    label {
+        font-size: 16px;
+    }
+    
+    input {
+        padding: 18px;
+        font-size: 20px;
+        border-width: 2.5px;
+    }
+    
+    input::placeholder {
+        font-size: 16px;
+    }
+    
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .result-item .value {
+        align-self: flex-end;
+    }
+    
+    footer {
+        font-size: 12px;
+        padding: 15px;
+    }
+}
+
