@@ -2,14 +2,11 @@
 const odd1Input = document.getElementById('odd1');
 const odd2Input = document.getElementById('odd2');
 const totalInput = document.getElementById('total');
-const calculateBtn = document.getElementById('calculateBtn');
-const resultsDiv = document.getElementById('results');
 
 // Elementos de resultado
 const bet1Span = document.getElementById('bet1');
 const bet2Span = document.getElementById('bet2');
 const marginSpan = document.getElementById('margin');
-const totalValueSpan = document.getElementById('totalValue');
 
 // Função para formatar moeda
 function formatCurrency(value) {
@@ -39,9 +36,12 @@ function calculateSurebet() {
     const odd2 = normalizeNumber(odd2Input.value);
     const total = normalizeNumber(totalInput.value);
     
-    // Validação
+    // Validação - se não tiver todos os valores, mostrar valores padrão
     if (!odd1 || !odd2 || !total || odd1 < 1.01 || odd2 < 1.01 || total <= 0) {
-        alert('Por favor, preencha todos os campos com valores válidos.\nOdds devem ser maiores que 1.00 e o valor total maior que zero.');
+        bet1Span.textContent = 'R$ 0,00';
+        bet2Span.textContent = 'R$ 0,00';
+        marginSpan.textContent = '0.00%';
+        marginSpan.className = 'result-value';
         return;
     }
     
@@ -67,45 +67,16 @@ function calculateSurebet() {
     // Calcular margem de lucro
     const margin = (profitLoss / totalInvested) * 100;
     
-    // Calcular valor total da operação (apostado + lucro)
-    const totalValue = totalInvested + profitLoss;
-    
     // Atualizar interface
     bet1Span.textContent = formatCurrency(bet1);
     bet2Span.textContent = formatCurrency(bet2);
     marginSpan.textContent = formatPercent(margin);
-    marginSpan.className = 'value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
-    totalValueSpan.textContent = formatCurrency(totalValue);
-    totalValueSpan.className = 'value ' + (profitLoss > 0 ? 'profit' : profitLoss < 0 ? 'loss' : 'neutral');
-    
-    // Mostrar resultados
-    resultsDiv.classList.remove('hidden');
-    
-    // Scroll suave para os resultados
-    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    marginSpan.className = 'result-value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
 }
 
-// Event listeners
-calculateBtn.addEventListener('click', calculateSurebet);
-
-// Permitir calcular com Enter
+// Calcular automaticamente quando os valores mudarem
 [odd1Input, odd2Input, totalInput].forEach(input => {
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            calculateSurebet();
-        }
-    });
+    input.addEventListener('input', calculateSurebet);
+    input.addEventListener('paste', () => setTimeout(calculateSurebet, 10));
 });
-
-// Calcular automaticamente quando os valores mudarem (opcional)
-// Descomente as linhas abaixo se quiser cálculo automático ao digitar
-/*
-[odd1Input, odd2Input, totalInput].forEach(input => {
-    input.addEventListener('input', () => {
-        if (odd1Input.value && odd2Input.value && totalInput.value) {
-            calculateSurebet();
-        }
-    });
-});
-*/
 
