@@ -7,6 +7,8 @@ const totalInput = document.getElementById('total');
 const bet1Span = document.getElementById('bet1');
 const bet2Span = document.getElementById('bet2');
 const marginSpan = document.getElementById('margin');
+const profitLossSpan = document.getElementById('profitLoss');
+const totalReturnSpan = document.getElementById('totalReturn');
 
 // Função para formatar moeda
 function formatCurrency(value) {
@@ -42,6 +44,10 @@ function calculateSurebet() {
         bet2Span.textContent = 'R$ 0,00';
         marginSpan.textContent = '0.00%';
         marginSpan.className = 'result-value';
+        profitLossSpan.textContent = 'R$ 0,00';
+        profitLossSpan.className = 'result-value';
+        totalReturnSpan.textContent = 'R$ 0,00';
+        totalReturnSpan.className = 'result-value';
         return;
     }
     
@@ -67,11 +73,18 @@ function calculateSurebet() {
     // Calcular margem de lucro
     const margin = (profitLoss / totalInvested) * 100;
     
+    // Calcular valor total (apostado + lucro)
+    const totalReturn = totalInvested + profitLoss;
+    
     // Atualizar interface
     bet1Span.textContent = formatCurrency(bet1);
     bet2Span.textContent = formatCurrency(bet2);
     marginSpan.textContent = formatPercent(margin);
     marginSpan.className = 'result-value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
+    profitLossSpan.textContent = formatCurrency(profitLoss);
+    profitLossSpan.className = 'result-value ' + (profitLoss > 0 ? 'profit' : profitLoss < 0 ? 'loss' : 'neutral');
+    totalReturnSpan.textContent = formatCurrency(totalReturn);
+    totalReturnSpan.className = 'result-value';
 }
 
 // Calcular automaticamente quando os valores mudarem
