@@ -6,9 +6,10 @@ const totalInput = document.getElementById('total');
 // Elementos de resultado
 const bet1Span = document.getElementById('bet1');
 const bet2Span = document.getElementById('bet2');
-const marginSpan = document.getElementById('margin');
+const totalInvestedSpan = document.getElementById('totalInvested');
 const profitLossSpan = document.getElementById('profitLoss');
 const totalReturnSpan = document.getElementById('totalReturn');
+const marginSpan = document.getElementById('margin');
 
 // Função para formatar moeda
 function formatCurrency(value) {
@@ -36,55 +37,50 @@ function normalizeNumber(value) {
 function calculateSurebet() {
     const odd1 = normalizeNumber(odd1Input.value);
     const odd2 = normalizeNumber(odd2Input.value);
-    const total = normalizeNumber(totalInput.value);
+    const bet1 = normalizeNumber(totalInput.value); // Agora este é o valor da aposta na Odd 1
     
     // Validação - se não tiver todos os valores, mostrar valores padrão
-    if (!odd1 || !odd2 || !total || odd1 < 1.01 || odd2 < 1.01 || total <= 0) {
+    if (!odd1 || !odd2 || !bet1 || odd1 < 1.01 || odd2 < 1.01 || bet1 <= 0) {
         bet1Span.textContent = 'R$ 0,00';
         bet2Span.textContent = 'R$ 0,00';
-        marginSpan.textContent = '0.00%';
-        marginSpan.className = 'result-value';
+        totalInvestedSpan.textContent = 'R$ 0,00';
         profitLossSpan.textContent = 'R$ 0,00';
         profitLossSpan.className = 'result-value';
         totalReturnSpan.textContent = 'R$ 0,00';
-        totalReturnSpan.className = 'result-value';
+        marginSpan.textContent = '0.00%';
+        marginSpan.className = 'result-value';
         return;
     }
     
-    // Calcular probabilidades implícitas
-    const prob1 = 1 / odd1;
-    const prob2 = 1 / odd2;
-    const totalProb = prob1 + prob2;
+    // Calcular a aposta na Odd 2 baseada na aposta da Odd 1
+    // Para uma surebet perfeita: bet1 * odd1 = bet2 * odd2
+    // Portanto: bet2 = (bet1 * odd1) / odd2
+    const bet2 = (bet1 * odd1) / odd2;
     
-    // Calcular distribuição das apostas
-    const bet1 = (prob1 / totalProb) * total;
-    const bet2 = (prob2 / totalProb) * total;
+    // Calcular total apostado
     const totalInvested = bet1 + bet2;
     
-    // Calcular retornos possíveis
+    // Calcular retornos (ambos devem ser iguais em uma surebet)
     const return1 = bet1 * odd1;
     const return2 = bet2 * odd2;
+    const totalReturn = return1; // ou return2, ambos são iguais
     
-    // Calcular lucro/prejuízo (ambos os retornos devem ser iguais em uma surebet perfeita)
-    // Vamos usar o menor retorno para calcular o lucro/prejuízo
-    const minReturn = Math.min(return1, return2);
-    const profitLoss = minReturn - totalInvested;
+    // Calcular lucro/prejuízo
+    const profitLoss = totalReturn - totalInvested;
     
     // Calcular margem de lucro
     const margin = (profitLoss / totalInvested) * 100;
     
-    // Calcular valor total (apostado + lucro)
-    const totalReturn = totalInvested + profitLoss;
-    
     // Atualizar interface
     bet1Span.textContent = formatCurrency(bet1);
     bet2Span.textContent = formatCurrency(bet2);
-    marginSpan.textContent = formatPercent(margin);
-    marginSpan.className = 'result-value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
+    totalInvestedSpan.textContent = formatCurrency(totalInvested);
     profitLossSpan.textContent = formatCurrency(profitLoss);
     profitLossSpan.className = 'result-value ' + (profitLoss > 0 ? 'profit' : profitLoss < 0 ? 'loss' : 'neutral');
     totalReturnSpan.textContent = formatCurrency(totalReturn);
     totalReturnSpan.className = 'result-value';
+    marginSpan.textContent = formatPercent(margin);
+    marginSpan.className = 'result-value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
 }
 
 // Calcular automaticamente quando os valores mudarem

@@ -13,38 +13,40 @@
             
             <div class="form-group-row">
                 <div class="form-group">
-                    <label for="odd1">Odd 1</label>
-                    <input type="text" id="odd1" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 2.5 ou 2,5">
+                    <label for="odd1">Odd Menor</label>
+                    <input type="text" id="odd1" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 1.80">
                 </div>
                 <div class="result-display">
-                    <span class="result-label">Aposta:</span>
+                    <span class="result-label">Aposta Odd Menor:</span>
                     <span class="result-value" id="bet1">R$ 0,00</span>
                 </div>
             </div>
             
             <div class="form-group-row">
                 <div class="form-group">
-                    <label for="odd2">Odd 2</label>
-                    <input type="text" id="odd2" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 2.5 ou 2,5">
+                    <label for="odd2">Odd Maior</label>
+                    <input type="text" id="odd2" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 2.40">
                 </div>
                 <div class="result-display">
-                    <span class="result-label">Aposta:</span>
+                    <span class="result-label">Aposta Odd Maior:</span>
                     <span class="result-value" id="bet2">R$ 0,00</span>
                 </div>
             </div>
             
             <div class="form-group-row">
                 <div class="form-group">
-                    <label for="total">Aposta Total (R$)</label>
-                    <input type="text" id="total" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 1000 ou 1000,50">
+                    <label for="total">Valor da Aposta (R$)</label>
+                    <input type="text" id="total" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Ex: 250">
                 </div>
                 <div class="result-display">
-                    <span class="result-label">Lucro:</span>
-                    <span class="result-value" id="margin">0.00%</span>
-                    <span class="result-label" style="margin-top: 12px;">Lucro (R$):</span>
-                    <span class="result-value" id="profitLoss">R$ 0,00</span>
-                    <span class="result-label" style="margin-top: 12px;">Total:</span>
+                    <span class="result-label">Lucro + Apostado:</span>
                     <span class="result-value" id="totalReturn">R$ 0,00</span>
+                    <span class="result-label">Total Apostado:</span>
+                    <span class="result-value" id="totalInvested">R$ 0,00</span>
+                    <span class="result-label">Lucro (R$):</span>
+                    <span class="result-value" id="profitLoss">R$ 0,00</span>
+                    <span class="result-label">Margem de Lucro:</span>
+                    <span class="result-value" id="margin">0.00%</span>
                 </div>
             </div>
         </div>
