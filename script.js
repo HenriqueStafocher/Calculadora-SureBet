@@ -83,6 +83,23 @@ function calculateSurebet() {
     marginSpan.className = 'result-value ' + (margin > 0 ? 'profit' : margin < 0 ? 'loss' : 'neutral');
 }
 
+// Função para inverter os valores das odds
+function reverseOdds() {
+    const odd1Value = odd1Input.value;
+    const odd2Value = odd2Input.value;
+    
+    // Trocar os valores
+    odd1Input.value = odd2Value;
+    odd2Input.value = odd1Value;
+    
+    // Recalcular automaticamente
+    calculateSurebet();
+}
+
+// Botão de reverse
+const reverseBtn = document.getElementById('reverseBtn');
+reverseBtn.addEventListener('click', reverseOdds);
+
 // Calcular automaticamente quando os valores mudarem
 [odd1Input, odd2Input, totalInput].forEach(input => {
     input.addEventListener('input', calculateSurebet);

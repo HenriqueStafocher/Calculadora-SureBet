@@ -24,14 +24,14 @@ body {
 .calculator-card {
     background: white;
     border-radius: 20px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
     color: #333;
     font-size: 36px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -111,6 +111,41 @@ label {
     letter-spacing: 0.3px;
 }
 
+.label-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reverse-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    padding: 0;
+}
+
+.reverse-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.reverse-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
 input {
     width: 100%;
     padding: 22px;
@@ -181,12 +216,13 @@ footer p {
 
 @media (max-width: 600px) {
     .calculator-card {
-        padding: 25px;
+        padding: 10px;
     }
     
     h1 {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-size: 20px;
+        margin-bottom: 2px;
+        display: none;
     }
     
     .form-group-row {
@@ -196,6 +232,16 @@ footer p {
     label {
         font-size: 18px;
         margin-bottom: 8px;
+    }
+    
+    .label-with-button {
+        margin-bottom: 8px;
+    }
+    
+    .reverse-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
     }
     
     input {
